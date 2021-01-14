@@ -4,7 +4,8 @@
   "description": "product page",
   "main": "index.js",
   "scripts": {
-    "test": "jest --collectCoverage"
+    "test": "jest --collectCoverage",
+    "lint": "./node_modules/.bin/eslint . --ignore-path ./.eslintignore"
   },
   "repository": {
     "type": "git",
