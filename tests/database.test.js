@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Seller = require('../database/database.js');
 
-const dbName = 'sellers';
+const dbName = 'etsy';
 
 beforeAll(async () => {
   const url = `mongodb://localhost/${dbName}`;
@@ -13,7 +13,7 @@ afterAll(() => mongoose.disconnect());
 
 describe('Database Tests', () => {
   it('Should connect to the \'sellers\' database', async () => {
-    expect(mongoose.connection.name).toBe('sellers');
+    expect(mongoose.connection.name).toBe('etsy');
   });
 
   it('Should have a sellers collection', () => {
