@@ -11,7 +11,7 @@ beforeAll(async () => {
 
 afterAll(() => mongoose.disconnect());
 
-describe('Database Tests', () => {
+describe('Connection', () => {
   it('Should connect to the \'sellers\' database', async () => {
     expect(mongoose.connection.name).toBe('etsy');
   });
