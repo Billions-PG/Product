@@ -1,10 +1,6 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/sellers', { useNewUrlParser: true, useUnifiedTopology: true });
-
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', () => console.log('connected'));
+mongoose.connect('mongodb://localhost/etsy', { useNewUrlParser: true, useUnifiedTopology: true });
 
 const sellerSchema = new mongoose.Schema({
   name: {
@@ -22,8 +18,9 @@ const sellerSchema = new mongoose.Schema({
         type: String,
         unique: true,
       },
+      image: String,
       description: String,
-      price: Number,
+      price: String,
       stock: Number,
       sizes: Boolean,
       rating: Number,

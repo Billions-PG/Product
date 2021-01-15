@@ -61,7 +61,7 @@ describe('Data Structure', () => {
   it('Should have price property in objects within products array', async () => {
     const results = await Seller.findOne();
     expect(results.products[0]).toHaveProperty('price');
-    expect(typeof results.products[0].price).toBe('number');
+    expect(typeof results.products[0].price).toBe('string');
   });
 
   it('Should have stock property in objects within products array', async () => {

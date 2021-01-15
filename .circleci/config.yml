@@ -10,9 +10,9 @@ jobs:
     steps:
       - checkout
       - node/install-packages
-      # - run:
-      #     name: 'seed db'
-      #     command: npm run seed
+      - run:
+          name: 'seed db'
+          command: npm run seed
       - run:
           name: 'Run tests with npm'
           command: npm run test
