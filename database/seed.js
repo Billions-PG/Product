@@ -224,7 +224,7 @@ while (i < 101) {
 const seed = async () => {
   await mongoose.connection.collections.sellers.drop();
   await Seller.create(sellers);
-  mongoose.disconnect();
+  await mongoose.disconnect();
 };
 
 seed();
