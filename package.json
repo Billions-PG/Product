@@ -21,6 +21,7 @@
   "dependencies": {
     "axios": "^0.21.1",
     "bootstrap": "^4.5.3",
+    "mongo-seeding": "^3.5.0",
     "mongoose": "^5.11.11",
     "react": "^17.0.1"
   },
