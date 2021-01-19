@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Seller = require('../database/database.js');
+const { Seller } = require('../database/database.js');
 
 const dbName = 'etsy';
 
