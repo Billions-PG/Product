@@ -18,7 +18,7 @@ describe('Connection', () => {
 
   it('Should not return null', async (done) => {
     const res = await request.get('/sellers');
-    expect(res.body).not.toBe(null);
+    expect(res.body).not.toBeNull();
     done();
   });
 });
@@ -26,8 +26,10 @@ describe('Connection', () => {
 describe('GET', () => {
   it('Should return an array of objects', async (done) => {
     const res = await request.get('/sellers');
-    expect(Array.isArray(res.body)).toBe(true);
-    expect(typeof res.body[0]).toBe('object');
+    expect(res.body).toEqual(expect.any(Array));
+    res.body.forEach((seller) => {
+      expect(seller).toEqual(expect.any(Object));
+    });
     done();
   });
 
@@ -39,14 +41,8 @@ describe('GET', () => {
     expect(res.body[rand(res.body.length)]).toHaveProperty('products');
     const product = res.body[rand(res.body.length)].products[0];
     if (product !== undefined) {
-      expect(product).toHaveProperty('id');
-      expect(product).toHaveProperty('name');
-      expect(product).toHaveProperty('image');
-      expect(product).toHaveProperty('description');
-      expect(product).toHaveProperty('price');
-      expect(product).toHaveProperty('stock');
-      expect(product).toHaveProperty('sizes');
-      expect(product).toHaveProperty('rating');
+      const props = ['id', 'name', 'image', 'description', 'price', 'stock', 'sizes', 'rating'];
+      expect(Object.keys(product)).toEqual(expect.arrayContaining(props));
     }
     done();
   });
@@ -59,7 +55,7 @@ describe('GET', () => {
 
   it('Should return nothing for invalid product id', async (done) => {
     const res = await request.get('/sellers/500');
-    expect(Object.keys(res.body)).toHaveLength(0);
+    expect(res.statusCode).toBe(404);
     done();
   });
 });
