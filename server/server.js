@@ -1,9 +1,11 @@
 const express = require('express');
+const path = require('path');
 const { Seller } = require('../database/database');
 
 const app = express();
 
 app.use(express.json());
+app.use(express.static(path.join(__dirname, '..', 'public')));
 
 app.get('/sellers', (req, res) => {
   Seller.find({}, (err, results) => {
