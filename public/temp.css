@@ -3,3 +3,28 @@
   height: 60px;  
   object-fit: cover;
 }
+
+.selected-photo {
+  width: 600px;
+  height: 600px;
+  object-fit: contain;
+}
+
+#product-sidebar {
+  width: 430px;
+}
+
+#product-photos {
+  display: flex;
+  flex-direction: row;
+}
+
+#product-app {
+  display: flex;
+  flex-direction: row;
+}
+
+.product-photos-side {
+  display: flex;
+  flex-direction: column;
+}

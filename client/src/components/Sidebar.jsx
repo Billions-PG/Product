@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Sidebar = ({ seller, product }) => (
-  <div>
+  <div id="product-sidebar">
     {/* Seller Name & Sales */}
     <span>{seller.name}</span>
     <div>

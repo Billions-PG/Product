@@ -10,12 +10,18 @@ class App extends React.Component {
     this.state = {
       seller: {},
       product: {},
-      images: [],
+      selectedImg: '',
     };
+
+    this.changeSelectedImg = this.changeSelectedImg.bind(this);
   }
 
   componentDidMount() {
     this.getRandomSellerAndProduct();
+    setTimeout(() => {
+      const { product } = this.state;
+      this.setState({ selectedImg: product.images[0] });
+    }, 100);
   }
 
   getRandomSellerAndProduct() {
@@ -31,25 +37,28 @@ class App extends React.Component {
         products.forEach((product) => {
           if (product.id === id) {
             this.setState({ product });
-          } else {
-            // set secondary photos for display
-            this.setState((prevState) => ({
-              images: [...prevState.images, product.image],
-            }));
           }
         });
       })
       .catch((err) => err);
   }
 
+  changeSelectedImg(e) {
+    this.setState({ selectedImg: e.target.src });
+  }
+
   render() {
-    const { seller, product, images } = this.state;
+    const { seller, product, selectedImg } = this.state;
     return (
       <div id="product-app">
         {
-          product.image
+          product.images
           && (
-            <Photos productImage={product.image} images={images} />
+            <Photos
+              changeSelectedImg={this.changeSelectedImg}
+              images={product.images}
+              selectedImg={selectedImg}
+            />
           )
         }
         <Sidebar product={product} seller={seller} />

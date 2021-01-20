@@ -3,20 +3,22 @@ import PropTypes from 'prop-types';
 import SelectedPhoto from './SelectedPhoto';
 import SidePhoto from './SidePhoto';
 
-const Photos = ({ productImage, images }) => (
-  <div>
-    <div>
+const Photos = ({ selectedImg, images, changeSelectedImg }) => (
+  <div id="product-photos">
+    <div className="product-photos-side">
       {
-        images.map((image) => <SidePhoto image={image} />)
+        images.length > 1
+        && images.map((image) => <SidePhoto changeSelectedImg={changeSelectedImg} image={image} />)
       }
     </div>
-    <SelectedPhoto productImage={productImage} />
+    <SelectedPhoto selectedImg={selectedImg} />
   </div>
 );
 
 Photos.propTypes = {
-  productImage: PropTypes.string.isRequired,
+  selectedImg: PropTypes.string.isRequired,
   images: PropTypes.arrayOf(PropTypes.string).isRequired,
+  changeSelectedImg: PropTypes.func.isRequired,
 };
 
 export default Photos;
