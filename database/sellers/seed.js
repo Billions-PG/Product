@@ -196,6 +196,18 @@ const sellers = [];
 const rand = (max) => Math.floor(Math.random() * Math.floor(max));
 const randPrice = () => parseFloat(Math.random() * (99 - 1) + 1).toFixed(2);
 
+const images = () => {
+  const imagesArray = [];
+  const count = rand(7) + 1;
+
+  while (imagesArray.length < count) {
+    const img = bucketUrl(rand(100) + 1);
+    if (imagesArray.indexOf(img) === -1) imagesArray.push(img);
+  }
+
+  return imagesArray;
+};
+
 let i = 1;
 while (i < 26) {
   sellers.push({
@@ -211,7 +223,7 @@ while (i < 101) {
   sellers[rand(sellers.length)].products.push({
     id: i,
     name: `${productAdjectives[rand(productAdjectives.length)]} ${productNames[rand(productNames.length)]}`,
-    image: bucketUrl(i),
+    images: images(),
     description: descriptions[rand(descriptions.length)],
     price: randPrice(),
     stock: rand(16),

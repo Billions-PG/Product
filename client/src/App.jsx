@@ -2,31 +2,57 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import axios from 'axios';
 import Sidebar from './components/Sidebar';
+import Photos from './components/Photos';
 
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
       seller: {},
+      product: {},
+      images: [],
     };
   }
 
   componentDidMount() {
-    this.getRandomProduct();
+    this.getRandomSellerAndProduct();
   }
 
-  getRandomProduct() {
+  getRandomSellerAndProduct() {
     const id = Math.floor(Math.random() * Math.floor(100)) + 1;
     axios.get(`/sellers/${id}`)
-      .then((res) => this.setState({ seller: res.data }))
+      // set seller
+      .then((res) => {
+        this.setState({ seller: res.data });
+        return res.data.products;
+      })
+      // set product
+      .then((products) => {
+        products.forEach((product) => {
+          if (product.id === id) {
+            this.setState({ product });
+          } else {
+            // set secondary photos for display
+            this.setState((prevState) => ({
+              images: [...prevState.images, product.image],
+            }));
+          }
+        });
+      })
       .catch((err) => err);
   }
 
   render() {
-    const { seller } = this.state;
+    const { seller, product, images } = this.state;
     return (
       <div id="product-app">
-        <Sidebar seller={seller} />
+        {
+          product.image
+          && (
+            <Photos productImage={product.image} images={images} />
+          )
+        }
+        <Sidebar product={product} seller={seller} />
       </div>
     );
   }

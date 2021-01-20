@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Sidebar = ({ seller }) => (
+const Sidebar = ({ seller, product }) => (
   <div>
+    {/* Seller Name & Sales */}
     <span>{seller.name}</span>
     <div>
       <span>
@@ -12,19 +13,20 @@ const Sidebar = ({ seller }) => (
       </span>
       <span>&#9733;&#9733;&#9733;&#9733;&#9733;</span>
     </div>
+
     {/* Product Name, Price & Stock */}
     {
       seller.products !== undefined
       && (
       <div>
-        <span>{seller.products[0].name}</span>
+        <span>{product.name}</span>
         <div>
           <span>
             $
-            {seller.products[0].price}
+            {product.price}
           </span>
           {
-            seller.products[0].stock
+            product.stock
               ? <span>&#10003; In stock</span>
               : <span>Out of stock</span>
           }
@@ -44,7 +46,7 @@ const Sidebar = ({ seller }) => (
           </div>
         </div>
         {
-          seller.products[0].sizes
+          product.sizes
             ? (
               <div>
                 <div>
@@ -71,7 +73,7 @@ const Sidebar = ({ seller }) => (
         {/* Description */}
         <div>
           <span>Description</span>
-          <span>{seller.products[0].description}</span>
+          <span>{product.description}</span>
         </div>
 
       </div>
@@ -94,6 +96,16 @@ Sidebar.propTypes = {
       sizes: PropTypes.bool,
       rating: PropTypes.number,
     })),
+  }).isRequired,
+  product: PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+    image: PropTypes.string,
+    description: PropTypes.string,
+    price: PropTypes.string,
+    stock: PropTypes.number,
+    sizes: PropTypes.bool,
+    rating: PropTypes.number,
   }).isRequired,
 };
 
