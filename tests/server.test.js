@@ -41,7 +41,7 @@ describe('GET', () => {
     expect(res.body[rand(res.body.length)]).toHaveProperty('products');
     const product = res.body[rand(res.body.length)].products[0];
     if (product !== undefined) {
-      const props = ['id', 'name', 'image', 'description', 'price', 'stock', 'sizes', 'rating'];
+      const props = ['id', 'name', 'images', 'description', 'price', 'stock', 'sizes', 'rating'];
       expect(Object.keys(product)).toEqual(expect.arrayContaining(props));
     }
     done();

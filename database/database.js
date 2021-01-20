@@ -18,7 +18,7 @@ const sellerSchema = new mongoose.Schema({
         type: String,
         unique: true,
       },
-      image: String,
+      images: Array,
       description: String,
       price: String,
       stock: Number,
