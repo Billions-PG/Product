@@ -5,7 +5,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const SidePhoto = ({ image, changeSelectedImg }) => (
-  <img onClick={changeSelectedImg} className="side-photo" alt="randomly generated" src={image} />
+  <img
+    onClick={changeSelectedImg}
+    className="side-photo"
+    alt="randomly generated"
+    src={image}
+    data-testid="side-photo"
+  />
 );
 
 SidePhoto.propTypes = {

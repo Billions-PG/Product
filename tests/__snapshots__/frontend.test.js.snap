@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Sidebar /> Renders size choices when applicable 1`] = `
+<select
+  data-testid="size"
+  id="product-quantity"
+  name="quantity"
+>
+  <option
+    value="XS"
+  >
+    XS
+  </option>
+  <option
+    value="S"
+  >
+    S
+  </option>
+  <option
+    value="M"
+  >
+    M
+  </option>
+  <option
+    value="L"
+  >
+    L
+  </option>
+  <option
+    value="XL"
+  >
+    XL
+  </option>
+</select>
+`;

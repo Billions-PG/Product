@@ -8,7 +8,13 @@ const Photos = ({ selectedImg, images, changeSelectedImg }) => (
     <div className="product-photos-side">
       {
         images.length > 1
-        && images.map((image) => <SidePhoto changeSelectedImg={changeSelectedImg} image={image} />)
+        && images.map((image) => (
+          <SidePhoto
+            key={image}
+            changeSelectedImg={changeSelectedImg}
+            image={image}
+          />
+        ))
       }
     </div>
     <SelectedPhoto selectedImg={selectedImg} />

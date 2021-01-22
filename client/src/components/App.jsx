@@ -1,8 +1,8 @@
 import React from 'react';
-import ReactDom from 'react-dom';
+// import ReactDom from 'react-dom';
 import axios from 'axios';
-import Sidebar from './components/Sidebar';
-import Photos from './components/Photos';
+import Sidebar from './Sidebar';
+import Photos from './Photos';
 
 class App extends React.Component {
   constructor() {
@@ -18,10 +18,6 @@ class App extends React.Component {
 
   componentDidMount() {
     this.getRandomSellerAndProduct();
-    setTimeout(() => {
-      const { product } = this.state;
-      this.setState({ selectedImg: product.images[0] });
-    }, 100);
   }
 
   getRandomSellerAndProduct() {
@@ -37,8 +33,10 @@ class App extends React.Component {
         products.forEach((product) => {
           if (product.id === id) {
             this.setState({ product });
+            this.setState({ selectedImg: product.images[0] });
           }
         });
+        return products[0];
       })
       .catch((err) => err);
   }
@@ -68,5 +66,3 @@ class App extends React.Component {
 }
 
 export default App;
-
-ReactDom.render(<App />, document.getElementById('app'));

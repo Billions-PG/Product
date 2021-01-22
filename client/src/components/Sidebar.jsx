@@ -27,8 +27,8 @@ const Sidebar = ({ seller, product }) => (
           </span>
           {
             product.stock
-              ? <span>&#10003; In stock</span>
-              : <span>Out of stock</span>
+              ? <span data-testid="stock">&#10003; In stock</span>
+              : <span data-testid="stock">Out of stock</span>
           }
         </div>
 
@@ -36,7 +36,7 @@ const Sidebar = ({ seller, product }) => (
         <div>
           <div>
             <span>Quantity</span>
-            <select name="quantity" id="product-quantity">
+            <select data-testid="quantity" name="quantity" id="product-quantity">
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -50,13 +50,13 @@ const Sidebar = ({ seller, product }) => (
             ? (
               <div>
                 <div>
-                  <span>Quantity</span>
-                  <select name="quantity" id="product-quantity">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
+                  <span>Sizes</span>
+                  <select data-testid="size" name="quantity" id="product-quantity">
+                    <option value="XS">XS</option>
+                    <option value="S">S</option>
+                    <option value="M">M</option>
+                    <option value="L">L</option>
+                    <option value="XL">XL</option>
                   </select>
                 </div>
               </div>
