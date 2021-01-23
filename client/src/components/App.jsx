@@ -48,18 +48,20 @@ class App extends React.Component {
   render() {
     const { seller, product, selectedImg } = this.state;
     return (
-      <div id="product-app">
-        {
-          product.images
-          && (
-            <Photos
-              changeSelectedImg={this.changeSelectedImg}
-              images={product.images}
-              selectedImg={selectedImg}
-            />
-          )
-        }
-        <Sidebar product={product} seller={seller} />
+      <div className="container">
+        <div className="row">
+          {
+            product.images
+            && (
+              <Photos
+                changeSelectedImg={this.changeSelectedImg}
+                images={product.images}
+                selectedImg={selectedImg}
+              />
+            )
+          }
+          <Sidebar product={product} seller={seller} />
+        </div>
       </div>
     );
   }

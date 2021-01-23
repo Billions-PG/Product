@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Button, Form } from 'react-bootstrap';
+import styles from '../styles.module.css';
 
 const Sidebar = ({ seller, product }) => (
-  <div id="product-sidebar">
+  <div className={`col-sm ${styles.sidebar}`}>
     {/* Seller Name & Sales */}
     <span>{seller.name}</span>
     <div>
@@ -33,41 +35,63 @@ const Sidebar = ({ seller, product }) => (
         </div>
 
         {/* Quantity &Sizes */}
-        <div>
-          <div>
-            <span>Quantity</span>
-            <select data-testid="quantity" name="quantity" id="product-quantity">
+        <Form>
+          <Form.Group>
+            <Form.Label>Quantity</Form.Label>
+            <Form.Control
+              as="select"
+              data-testid="quantity"
+              name="quantity"
+              id="product-quantity"
+            >
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
               <option value="4">4</option>
               <option value="5">5</option>
-            </select>
-          </div>
-        </div>
-        {
+            </Form.Control>
+          </Form.Group>
+          {
           product.sizes
             ? (
-              <div>
-                <div>
-                  <span>Sizes</span>
-                  <select data-testid="size" name="quantity" id="product-quantity">
-                    <option value="XS">XS</option>
-                    <option value="S">S</option>
-                    <option value="M">M</option>
-                    <option value="L">L</option>
-                    <option value="XL">XL</option>
-                  </select>
-                </div>
-              </div>
+              <Form.Group>
+                <Form.Label>Sizes</Form.Label>
+                <Form.Control
+                  as="select"
+                  data-testid="size"
+                  name="quantity"
+                  id="product-quantity"
+                >
+                  <option value="XS">XS</option>
+                  <option value="S">S</option>
+                  <option value="M">M</option>
+                  <option value="L">L</option>
+                  <option value="XL">XL</option>
+                </Form.Control>
+              </Form.Group>
             )
             : <></>
-        }
+          }
+        </Form>
 
         {/* Buttons */}
         <div>
-          <button type="button">Buy it now</button>
-          <button type="button">Add to cart</button>
+          <Button
+            variant="light"
+            className={`border border-dark rounded-pill ${styles.buyButton}`}
+            type="button"
+            block
+          >
+            Buy it now
+          </Button>
+          <Button
+            variant="dark"
+            className="rounded-pill"
+            type="button"
+            block
+          >
+            Add to cart
+          </Button>
         </div>
 
         {/* Description */}

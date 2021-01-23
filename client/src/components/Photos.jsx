@@ -2,10 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import SelectedPhoto from './SelectedPhoto';
 import SidePhoto from './SidePhoto';
+import styles from '../styles.module.css';
 
 const Photos = ({ selectedImg, images, changeSelectedImg }) => (
-  <div id="product-photos">
-    <div className="product-photos-side">
+  <>
+    <div className={styles.sidePhotos}>
       {
         images.length > 1
         && images.map((image) => (
@@ -18,7 +19,7 @@ const Photos = ({ selectedImg, images, changeSelectedImg }) => (
       }
     </div>
     <SelectedPhoto selectedImg={selectedImg} />
-  </div>
+  </>
 );
 
 Photos.propTypes = {
