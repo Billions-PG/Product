@@ -1,8 +1,11 @@
 import React from 'react';
-// import ReactDom from 'react-dom';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import axios from 'axios';
 import Sidebar from './Sidebar';
 import Photos from './Photos';
+import styles from '../styles.module.css';
 
 class App extends React.Component {
   constructor() {
@@ -22,7 +25,7 @@ class App extends React.Component {
 
   getRandomSellerAndProduct() {
     const id = Math.floor(Math.random() * Math.floor(100)) + 1;
-    axios.get(`/sellers/${id}`)
+    axios.get(`http://localhost:3002/sellers/${id}`)
       // set seller
       .then((res) => {
         this.setState({ seller: res.data });
@@ -48,21 +51,26 @@ class App extends React.Component {
   render() {
     const { seller, product, selectedImg } = this.state;
     return (
-      <div className="container">
-        <div className="row">
-          {
-            product.images
-            && (
-              <Photos
-                changeSelectedImg={this.changeSelectedImg}
-                images={product.images}
-                selectedImg={selectedImg}
-              />
-            )
-          }
-          <Sidebar product={product} seller={seller} />
-        </div>
-      </div>
+      <Container className={`${styles.app}`}>
+        <Row className="d-flex justify-content-center">
+          <Col md={8}>
+            {
+              product.images
+              && (
+                <Photos
+                  changeSelectedImg={this.changeSelectedImg}
+                  images={product.images}
+                  selectedImg={selectedImg}
+                />
+              )
+            }
+          </Col>
+          <Col fluid>
+            <Sidebar product={product} seller={seller} />
+          </Col>
+
+        </Row>
+      </Container>
     );
   }
 }

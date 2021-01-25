@@ -1,19 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Form } from 'react-bootstrap';
+import Rating from '@material-ui/lab/Rating';
+import { makeStyles } from '@material-ui/core/styles';
 import styles from '../styles.module.css';
 
+const useStyles = makeStyles({
+  rating: {
+    color: 'black',
+  },
+});
+
 const Sidebar = ({ seller, product }) => (
-  <div className={`col-sm ${styles.sidebar}`}>
+  // <div className={styles.sidebar}>
+  <div>
     {/* Seller Name & Sales */}
-    <span>{seller.name}</span>
+    <span className={styles.sellerName}>{seller.name}</span>
     <div>
-      <span>
+      <span className={styles.sales}>
         {seller.sales}
         {' '}
         sales
       </span>
-      <span>&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+      <span className="ml-1 mr-1 text-muted"> | </span>
+      <Rating className={`${styles.rating} ${useStyles().rating}`} disabled size="small" name="half-rating" defaultValue={2.5} precision={0.5} />
     </div>
 
     {/* Product Name, Price & Stock */}
@@ -21,25 +31,26 @@ const Sidebar = ({ seller, product }) => (
       seller.products !== undefined
       && (
       <div>
-        <span>{product.name}</span>
-        <div>
-          <span>
+        <span className={styles.productName}>{product.name}</span>
+        <div className={styles.priceStock}>
+          <span className={styles.price}>
             $
             {product.price}
           </span>
           {
             product.stock
-              ? <span data-testid="stock">&#10003; In stock</span>
-              : <span data-testid="stock">Out of stock</span>
+              ? <span className={styles.stock} data-testid="stock">&#10003; In stock</span>
+              : <span className={styles.stock} data-testid="stock">Out of stock</span>
           }
         </div>
 
         {/* Quantity &Sizes */}
         <Form>
           <Form.Group>
-            <Form.Label>Quantity</Form.Label>
+            <Form.Label className={styles.label}>Quantity</Form.Label>
             <Form.Control
               as="select"
+              className={styles.select}
               data-testid="quantity"
               name="quantity"
               id="product-quantity"
@@ -52,25 +63,26 @@ const Sidebar = ({ seller, product }) => (
             </Form.Control>
           </Form.Group>
           {
-          product.sizes
-            ? (
-              <Form.Group>
-                <Form.Label>Sizes</Form.Label>
-                <Form.Control
-                  as="select"
-                  data-testid="size"
-                  name="quantity"
-                  id="product-quantity"
-                >
-                  <option value="XS">XS</option>
-                  <option value="S">S</option>
-                  <option value="M">M</option>
-                  <option value="L">L</option>
-                  <option value="XL">XL</option>
-                </Form.Control>
-              </Form.Group>
-            )
-            : <></>
+            product.sizes
+              ? (
+                <Form.Group>
+                  <Form.Label className={styles.label}>Sizes</Form.Label>
+                  <Form.Control
+                    as="select"
+                    className={styles.select}
+                    data-testid="size"
+                    name="quantity"
+                    id="product-quantity"
+                  >
+                    <option value="XS">XS</option>
+                    <option value="S">S</option>
+                    <option value="M">M</option>
+                    <option value="L">L</option>
+                    <option value="XL">XL</option>
+                  </Form.Control>
+                </Form.Group>
+              )
+              : <></>
           }
         </Form>
 
@@ -78,7 +90,7 @@ const Sidebar = ({ seller, product }) => (
         <div>
           <Button
             variant="light"
-            className={`border border-dark rounded-pill ${styles.buyButton}`}
+            className={`border border-dark rounded-pill ${styles.buyButton} ${styles.button}`}
             type="button"
             block
           >
@@ -86,7 +98,7 @@ const Sidebar = ({ seller, product }) => (
           </Button>
           <Button
             variant="dark"
-            className="rounded-pill"
+            className={`rounded-pill ${styles.addButton} ${styles.button}`}
             type="button"
             block
           >
@@ -95,9 +107,9 @@ const Sidebar = ({ seller, product }) => (
         </div>
 
         {/* Description */}
-        <div>
-          <span>Description</span>
-          <span>{product.description}</span>
+        <div className="mt-4">
+          <span className={`mb-1 ${styles.descriptionTitle}`}>Description</span>
+          <span className={styles.descriptionBody}>{product.description}</span>
         </div>
 
       </div>

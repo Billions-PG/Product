@@ -9,11 +9,11 @@ import styles from '../styles.module.css';
 const SidePhoto = ({ image, changeSelectedImg }) => (
   <Image
     onClick={changeSelectedImg}
-    className={styles.sidePhoto}
+    className={`mb-2 ${styles.sidePhoto}`}
     alt="randomly generated"
     src={image}
     data-testid="side-photo"
-    thumbnail
+    rounded
   />
 );
 
