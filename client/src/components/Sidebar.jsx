@@ -12,19 +12,32 @@ const useStyles = makeStyles({
 });
 
 const Sidebar = ({ seller, product }) => (
-  // <div className={styles.sidebar}>
   <div>
     {/* Seller Name & Sales */}
-    <span className={styles.sellerName}>{seller.name}</span>
-    <div>
-      <span className={styles.sales}>
-        {seller.sales}
-        {' '}
-        sales
-      </span>
-      <span className="ml-1 mr-1 text-muted"> | </span>
-      <Rating className={`${styles.rating} ${useStyles().rating}`} disabled size="small" name="half-rating" defaultValue={2.5} precision={0.5} />
-    </div>
+    {
+      product !== undefined
+      && (
+        <>
+          <span className={styles.sellerName}>{seller.name}</span>
+          <div>
+            <span className={styles.sales}>
+              {seller.sales}
+              {' '}
+              sales
+            </span>
+            <span className="ml-1 mr-1 text-muted"> | </span>
+            <Rating
+              className={`${styles.rating} ${useStyles().rating}`}
+              disabled
+              size="small"
+              name="half-rating"
+              value={Number(product.rating)}
+              precision={0.5}
+            />
+          </div>
+        </>
+      )
+    }
 
     {/* Product Name, Price & Stock */}
     {

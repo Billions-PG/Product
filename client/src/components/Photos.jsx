@@ -5,11 +5,9 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import SelectedPhoto from './SelectedPhoto';
 import SidePhoto from './SidePhoto';
-import styles from '../styles.module.css';
 
 const Photos = ({ selectedImg, images, changeSelectedImg }) => (
   <>
-    {/* <div className={styles.sidePhotos}> */}
     <Container>
       <Row>
         <Col md={2}>
