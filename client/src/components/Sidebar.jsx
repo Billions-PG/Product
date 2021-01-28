@@ -1,7 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import Rating from '@material-ui/lab/Rating';
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import styles from '../styles.module.css';
 
@@ -11,38 +12,46 @@ const useStyles = makeStyles({
   },
 });
 
-const Sidebar = ({ seller, product }) => (
-  <div>
-    {/* Seller Name & Sales */}
-    {
-      product !== undefined
-      && (
-        <>
-          <span className={styles.sellerName}>{seller.name}</span>
-          <div>
-            <span className={styles.sales}>
-              {seller.sales}
-              {' '}
-              sales
-            </span>
-            <span className="ml-1 mr-1 text-muted"> | </span>
-            <Rating
-              className={`${styles.rating} ${useStyles().rating}`}
-              disabled
-              size="small"
-              name="half-rating"
-              value={Number(product.rating)}
-              precision={0.5}
-            />
-          </div>
-        </>
-      )
-    }
+const Sidebar = () => {
+  const { prodId } = useParams();
 
-    {/* Product Name, Price & Stock */}
-    {
-      seller.products !== undefined
-      && (
+  const [seller, setSeller] = useState({});
+  const [product, setProduct] = useState({});
+
+  const getState = async () => {
+    const res = await axios.get(`http://localhost:3002/sellers/${prodId}`);
+    setSeller(res.data);
+    setProduct(res.data.products.filter((p) => p.id === Number(prodId))[0]);
+  };
+
+  useEffect(() => {
+    getState();
+  }, [prodId]);
+
+  return (
+    <div>
+      {/* Seller Name & Sales */}
+      <>
+        <span className={styles.sellerName}>{seller.name}</span>
+        <div>
+          <span className={styles.sales}>
+            {seller.sales}
+            {' '}
+            sales
+          </span>
+          <span className="ml-1 mr-1 text-muted"> | </span>
+          <Rating
+            className={`${styles.rating} ${useStyles().rating}`}
+            disabled
+            size="small"
+            name="half-rating"
+            value={Number(product.rating)}
+            precision={0.5}
+          />
+        </div>
+      </>
+      {/* Product Name, Price & Stock */}
+
       <div>
         <span className={styles.productName}>{product.name}</span>
         <div className={styles.priceStock}>
@@ -126,36 +135,8 @@ const Sidebar = ({ seller, product }) => (
         </div>
 
       </div>
-      )
-    }
-  </div>
-);
-
-Sidebar.propTypes = {
-  seller: PropTypes.shape({
-    name: PropTypes.string,
-    sales: PropTypes.number,
-    products: PropTypes.arrayOf(PropTypes.shape({
-      id: PropTypes.number,
-      name: PropTypes.string,
-      image: PropTypes.string,
-      description: PropTypes.string,
-      price: PropTypes.string,
-      stock: PropTypes.number,
-      sizes: PropTypes.bool,
-      rating: PropTypes.number,
-    })),
-  }).isRequired,
-  product: PropTypes.shape({
-    id: PropTypes.number,
-    name: PropTypes.string,
-    image: PropTypes.string,
-    description: PropTypes.string,
-    price: PropTypes.string,
-    stock: PropTypes.number,
-    sizes: PropTypes.bool,
-    rating: PropTypes.number,
-  }).isRequired,
+    </div>
+  );
 };
 
 export default Sidebar;
