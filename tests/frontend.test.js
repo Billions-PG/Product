@@ -6,6 +6,7 @@ import 'jsdom-global/register';
 import '@testing-library/jest-dom';
 import React from 'react';
 import { render } from '@testing-library/react';
+import { useParams } from 'react-router-dom';
 // import userEvent from '@testing-library/user-event';
 
 import Photos from '../client/src/components/Photos';
@@ -16,7 +17,7 @@ import App from '../client/src/components/App';
 
 // product = sizes: false, stock: 0
 // productAlt = sizes: true, stock: >0
-const { product, seller, productAlt } = require('./mockData');
+const { product } = require('./mockData');
 
 describe('<App />', () => {
   it('Renders the App', () => {
@@ -27,6 +28,10 @@ describe('<App />', () => {
 // Photos
 describe('<Photos />', () => {
   const mock = jest.fn();
+
+  beforeEach(() => {
+    useParams.mockReturnValue({ prodId: '1' });
+  });
 
   afterEach(() => {
     jest.clearAllMocks();
@@ -62,12 +67,6 @@ describe('<SidePhoto />', () => {
   it('Renders the SidePhoto component', () => {
     renderSidePhoto();
   });
-
-  // it('Calls function with target', () => {
-  //   const { getAllByTestId } = renderSidePhoto();
-  //   const images = getAllByTestId('side-photo');
-  //   userEvent.click(images);
-  // });
 });
 
 // SelectedPhoto
@@ -81,30 +80,19 @@ describe('<SelectedPhoto />', () => {
 
 // Sidebar
 describe('<Sidebar />', () => {
-  const renderSidebar = (s = seller, p = product) => render(<Sidebar
-    seller={s}
-    product={p}
-  />);
+  beforeEach(() => {
+    useParams.mockReturnValue({ prodId: '1' });
+  });
+
+  const renderSidebar = () => render(<Sidebar />);
 
   it('Renders the Sidebar component', () => {
     renderSidebar();
   });
 
   it('Renders span with \'out of stock\' message at zero stock', () => {
-    const { getByTestId } = renderSidebar(undefined, productAlt);
+    const { getByTestId } = renderSidebar();
     const stock = getByTestId('stock');
     expect(stock).toContainHTML('<span data-testid="stock">Out of stock</span>');
-  });
-
-  it('Renders span with \'In stock\' message at zero stock', () => {
-    const { getByTestId } = renderSidebar(undefined, product);
-    const stock = getByTestId('stock');
-    expect(stock).toContainHTML('<span data-testid="stock">✓ In stock</span>');
-  });
-
-  it('Renders size choices when applicable', () => {
-    const { getByTestId } = renderSidebar(undefined, productAlt);
-    const sizes = getByTestId('size');
-    expect(sizes).toMatchSnapshot();
   });
 });
