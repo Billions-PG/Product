@@ -20,7 +20,7 @@ const App = () => (
             <Col md={8}>
               <Photos />
             </Col>
-            <Col fluid="true">
+            <Col className="ml-5" fluid="true">
               <Sidebar />
             </Col>
           </Row>

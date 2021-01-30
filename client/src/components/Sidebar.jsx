@@ -19,7 +19,10 @@ const Sidebar = () => {
   const [product, setProduct] = useState({});
 
   const getState = async () => {
-    const res = await axios.get(`http://localhost:3002/sellers/${prodId}`);
+    const res = await axios.get(`http://localhost:3002/sellers/${prodId}`); // dev
+    // const res = await axios.get(`http://54.90.53.234:3002/sellers/${prodId}`); // joey
+    // const res = await axios.get(`http://3.15.40.71:3002/sellers/${prodId}`); // pablo
+    // const res = await axios.get(`http://52.53.221.54:3002/sellers/${prodId}`); // jon
     setSeller(res.data);
     setProduct(res.data.products.filter((p) => p.id === Number(prodId))[0]);
   };

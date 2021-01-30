@@ -26,6 +26,19 @@
 
 .sidePhoto:hover {
   cursor: pointer;
+
+}
+
+.unselected {
+  opacity: 0.6;
+}
+
+.unselected:hover {
+  opacity: 0.9;
+}
+
+.selected {
+  border: black 2px solid;
 }
 
 /* ==== SideBar ==== */
