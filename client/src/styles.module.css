@@ -5,12 +5,68 @@
   font-family: 'Roboto', sans-serif;
 }
 
+/* ==== Nav ==== */
+
+.nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: #DEDEDE 2px solid;
+  height: 80px;
+}
+
+.title {
+  margin-right: 20px;
+  font-size: 2em;
+  color: #F16520;
+  align-self: center;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.search {
+  outline: none;
+  width: 40%;
+  height: 50px;
+  border-radius: 50px 0 0 50px;
+  border: #808080 1px solid !important;
+  border-right: none !important;
+  background-color: #EFEFEF;
+  padding-left: 20px;
+}
+
+.searchButton {
+  outline: none !important;
+  height: 50px;
+  border-radius: 0 50px 50px 0;
+  border: #808080 1px solid !important;
+  border-left: none !important;
+  background-color: #EFEFEF;
+  padding-right: 15px;
+  color: #222;
+}
+
+.signin {
+  margin: 0px 35px;
+  cursor: pointer;
+}
+
+.cart {
+  max-width: 25px;
+  cursor: pointer;
+}
+
+
 /* ==== Photos ==== */
 
 .selectedPhoto {
   width: 600px;
   height: 600px;
   object-fit: contain;
+}
+
+.selectedPhoto:hover {
+  cursor: zoom-in;
 }
 
 .sidePhotos {

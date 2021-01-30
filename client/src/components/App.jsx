@@ -9,12 +9,14 @@ import {
 } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import Photos from './Photos';
+import Nav from './Nav';
 import styles from '../styles.module.css';
 
 const App = () => (
   <Router>
     <Switch>
       <Route path="/product/:prodId">
+        <Nav />
         <Container className={`${styles.app}`}>
           <Row className="d-flex justify-content-center">
             <Col md={8}>
