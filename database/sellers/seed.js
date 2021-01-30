@@ -186,8 +186,7 @@ He didn't actually enjoy it, but he had accepted it and come to terms with it. O
 It was difficult to explain to them how the diagnosis of certain death had actually given him life. While everyone around him was in tears and upset, he actually felt more at ease. The doctor said it would be less than a year.
 That gave him a year to live, something he'd failed to do with his daily drudgery of a routine that had passed as life until then.
 It was their first date and she had been looking forward to it the entire week. She had her eyes on him for months, and it had taken a convoluted scheme with several friends to make it happen, but he'd finally taken the hint and asked her out.
-After all the time and effort she'd invested into it, she never thought that it would be anything but wonderful. It goes without saying that things didn't work out quite as she expected.
-`.split('\n');
+After all the time and effort she'd invested into it, she never thought that it would be anything but wonderful. It goes without saying that things didn't work out quite as she expected.`.split('\n');
 
 const bucketUrl = (i) => `https://fec-product-pictures.s3.amazonaws.com/product_${i}.jpg`;
 
@@ -195,6 +194,22 @@ const sellers = [];
 
 const rand = (max) => Math.floor(Math.random() * Math.floor(max));
 const randPrice = () => parseFloat(Math.random() * (99 - 1) + 1).toFixed(2);
+const randRating = () => {
+  let rating = rand(6);
+  if (rating < 5) rating += (!rand(2) ? 0.5 : 0);
+  return rating;
+};
+const images = () => {
+  const imagesArray = [];
+  const count = rand(7) + 1;
+
+  while (imagesArray.length < count) {
+    const img = bucketUrl(rand(100) + 1);
+    if (imagesArray.indexOf(img) === -1) imagesArray.push(img);
+  }
+
+  return imagesArray;
+};
 
 let i = 1;
 while (i < 26) {
@@ -211,12 +226,12 @@ while (i < 101) {
   sellers[rand(sellers.length)].products.push({
     id: i,
     name: `${productAdjectives[rand(productAdjectives.length)]} ${productNames[rand(productNames.length)]}`,
-    image: bucketUrl(i),
+    images: images(),
     description: descriptions[rand(descriptions.length)],
     price: randPrice(),
     stock: rand(16),
     sizes: !rand(2),
-    rating: rand(6),
+    rating: randRating(),
   });
   i += 1;
 }
