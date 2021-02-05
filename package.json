@@ -32,6 +32,7 @@
     "identity-obj-proxy": "^3.0.0",
     "mongo-seeding": "^3.5.0",
     "mongoose": "^5.11.11",
+    "pg": "^8.5.1",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-bootstrap": "^1.4.3",
