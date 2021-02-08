@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 const cors = require('cors');
 const { Seller } = require('../database/database');
-const { client } = require('../db_postgres/connection.js');
+const { queryAll, queryOne } = require('../db_postgres/queries.js');
 
 const app = express();
 
@@ -19,21 +19,13 @@ app.get('/sellers', (req, res) => {
 });
 */
 
-
-
-app.get('/sellers', async (req, res) => {
-  var responseData = [];
-  client.query('SELECT * FROM sellers')
-    .then( (data) => {
-      console.log('response from sellers: ', data);
-      responseData = data.rows;
-      res.status(200).send(data);
-    })
-    .catch( (err) => {
-      console.log('error fetching all sellers: ', err);
-      res.status(400).send(err);
-    });
+app.get('/sellers', (req, res) => {
+  queryAll(res);
 });
+
+
+
+
 
 /*  --- Legacy ---
 app.get('/sellers/:prodId', async (req, res) => {
@@ -44,4 +36,14 @@ app.get('/sellers/:prodId', async (req, res) => {
 });
 */
 
+app.get('/sellers/:prodId', (req, res) => {
+  queryOne(req.params.prodId, res);
+});
+
+
+
+
 module.exports = app;
+
+
+

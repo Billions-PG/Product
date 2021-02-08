@@ -5,6 +5,9 @@ import Modal from '@material-ui/core/Modal';
 import { makeStyles } from '@material-ui/core/styles';
 import styles from '../styles.module.css';
 
+const DOSH_URL = "https://destinationcapstone.sfo2.digitaloceanspaces.com/";
+
+
 const SelectedPhoto = ({ selectedImg }) => {
   const [open, setOpen] = useState(false);
 
@@ -43,7 +46,7 @@ const SelectedPhoto = ({ selectedImg }) => {
         onClick={handleOpen}
         className={styles.selectedPhoto}
         alt="randomly generated"
-        src={selectedImg}
+        src={`${DOSH_URL}${selectedImg}`}
       />
 
       <Modal
@@ -54,7 +57,7 @@ const SelectedPhoto = ({ selectedImg }) => {
         <Image
           className={classes.paper}
           alt="randomly generated"
-          src={selectedImg}
+          src={`${DOSH_URL}${selectedImg}`}
         />
       </Modal>
     </>

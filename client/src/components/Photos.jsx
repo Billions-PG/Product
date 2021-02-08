@@ -7,6 +7,9 @@ import axios from 'axios';
 import SelectedPhoto from './SelectedPhoto';
 import SidePhoto from './SidePhoto';
 
+//CWM adding for temp photo links
+const DOSH_URL = "https://destinationcapstone.sfo2.digitaloceanspaces.com/";
+
 const Photos = () => {
   const { prodId } = useParams();
 
@@ -18,8 +21,13 @@ const Photos = () => {
     // const res = await axios.get(`http://54.90.53.234:3002/sellers/${prodId}`); // joey
     // const res = await axios.get(`http://3.15.40.71:3002/sellers/${prodId}`); // pablo
     // const res = await axios.get(`http://52.53.221.54:3002/sellers/${prodId}`); //jon
-    changeImages(res.data.products.filter((p) => p.id === Number(prodId))[0].images);
-    changeSelectedImg(res.data.products.filter((p) => p.id === Number(prodId))[0].images[0]);
+    console.log("PRINTING RESPONSE: ", res.data);
+
+    //changeImages(res.data[0].products.filter((p) => p.id === Number(prodId))[0].images);
+    //changeSelectedImg(res.data[0].products.filter((p) => p.id === Number(prodId))[0].images[0]);
+
+    changeImages(res.data[0].images);
+    changeSelectedImg(res.data[0].images[0]);
   };
 
   const changeSelected = (e) => {

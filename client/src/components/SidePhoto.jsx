@@ -6,6 +6,8 @@ import PropTypes from 'prop-types';
 import Image from 'react-bootstrap/Image';
 import styles from '../styles.module.css';
 
+const DOSH_URL = "https://destinationcapstone.sfo2.digitaloceanspaces.com/";
+
 const SidePhoto = ({ image, changeSelectedImg, selectedImg }) => (
   <>
     {
@@ -15,7 +17,7 @@ const SidePhoto = ({ image, changeSelectedImg, selectedImg }) => (
             onClick={changeSelectedImg}
             className={`mb-2 ${styles.sidePhoto} ${styles.selected}`}
             alt="randomly generated"
-            src={image}
+            src={`${DOSH_URL}${image}`}
             data-testid="side-photo"
             rounded
           />
@@ -25,7 +27,7 @@ const SidePhoto = ({ image, changeSelectedImg, selectedImg }) => (
             onClick={changeSelectedImg}
             className={`mb-2 ${styles.sidePhoto} ${styles.unselected}`}
             alt="randomly generated"
-            src={image}
+            src={`${DOSH_URL}${image}`}
             data-testid="side-photo"
             rounded
           />
