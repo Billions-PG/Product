@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest --collectCoverage --detectOpenHandles --no-cache",
     "lint": "./node_modules/.bin/eslint . --ignore-path ./.eslintignore",
-    "seed": "node ./database/seed.js",
+    "seed": "node ./db_postgres/postgres_seed.js",
     "start:server": "nodemon ./server/start.js",
     "build": "webpack",
     "watch": "webpack -w"

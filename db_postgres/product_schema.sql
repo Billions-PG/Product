@@ -10,7 +10,7 @@ CREATE TABLE products (
   FOREIGN KEY (seller_id)
     REFERENCES sellers (_seller_id),
   name VARCHAR (255) NOT NULL,
-  description VARCHAR (255) NOT NULL,
+  description TEXT NOT NULL,
   price NUMERIC NOT NULL,
   stock INT NOT NULL,
   sizes BOOLEAN NOT NULL,
@@ -24,3 +24,5 @@ CREATE TABLE photos (
     REFERENCES products (_product_id),
   url VARCHAR (255) NOT NULL
 );
+
+CREATE INDEX photos_productId_FK_index ON photos (product_id);
