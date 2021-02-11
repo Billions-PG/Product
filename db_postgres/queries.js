@@ -42,7 +42,7 @@ const queryAll = async (res) => {
         })
         prod.images = urls;
       }
-      console.log("finished responseData: ", responseData);
+      //console.log("finished responseData: ", responseData);
       res.send(responseData);
     })
     .catch( (err) => {
@@ -65,7 +65,7 @@ const queryOne = async (prodId, res) => {
   }
   responseData = tempResult;
   var photoResults = {};
-  console.log('tempResult: ', tempResult);
+  //console.log('tempResult: ', tempResult);
   for (let i = 0; i < tempResult.length; i++) {
     let tempProdId = tempResult[i]._product_id;
     photoResults[tempProdId] = queryPhotos(tempProdId);     
@@ -81,7 +81,7 @@ const queryOne = async (prodId, res) => {
         })
         prod.images = urls;
       }
-      console.log("finished responseData: ", responseData);
+      //console.log("finished responseData: ", responseData);
       res.send(responseData);
     })
     .catch( (err) => {
