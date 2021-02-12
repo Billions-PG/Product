@@ -46,7 +46,7 @@ const SelectedPhoto = ({ selectedImg }) => {
         onClick={handleOpen}
         className={styles.selectedPhoto}
         alt="randomly generated"
-        src={`${DOSH_URL}${selectedImg}`}
+        src={`${selectedImg}`}
       />
 
       <Modal
@@ -57,7 +57,7 @@ const SelectedPhoto = ({ selectedImg }) => {
         <Image
           className={classes.paper}
           alt="randomly generated"
-          src={`${DOSH_URL}${selectedImg}`}
+          src={`${selectedImg}`}
         />
       </Modal>
     </>

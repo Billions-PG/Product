@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-mongoose.connect(process.env.MONGO_URL || 'mongodb://localhost/etsy', { useNewUrlParser: true, useUnifiedTopology: true });
+//mongoose.connect(process.env.MONGO_URL || 'mongodb://localhost/etsy', { useNewUrlParser: true, useUnifiedTopology: true });
 
 const sellerSchema = new mongoose.Schema({
   name: {

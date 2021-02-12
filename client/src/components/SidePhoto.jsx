@@ -17,7 +17,7 @@ const SidePhoto = ({ image, changeSelectedImg, selectedImg }) => (
             onClick={changeSelectedImg}
             className={`mb-2 ${styles.sidePhoto} ${styles.selected}`}
             alt="randomly generated"
-            src={`${DOSH_URL}${image}`}
+            src={`${image}`}
             data-testid="side-photo"
             rounded
           />
@@ -27,7 +27,7 @@ const SidePhoto = ({ image, changeSelectedImg, selectedImg }) => (
             onClick={changeSelectedImg}
             className={`mb-2 ${styles.sidePhoto} ${styles.unselected}`}
             alt="randomly generated"
-            src={`${DOSH_URL}${image}`}
+            src={`${image}`}
             data-testid="side-photo"
             rounded
           />

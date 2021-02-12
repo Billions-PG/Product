@@ -7,6 +7,10 @@ const { queryAll, queryOne } = require('../db_postgres/queries.js');
 const app = express();
 
 app.use(cors());
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  next();
+});
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '..', 'public')));
 
@@ -24,9 +28,6 @@ app.get('/sellers', (req, res) => {
 });
 
 
-
-
-
 /*  --- Legacy ---
 app.get('/sellers/:prodId', async (req, res) => {
   console.log("hit sellersID endpoint: ", req.params.prodId);
@@ -36,14 +37,8 @@ app.get('/sellers/:prodId', async (req, res) => {
 });
 */
 
-app.get('/sellers/:prodId', (req, res) => {
+app.get('/sellers/:prodId', cors(), (req, res) => {
   queryOne(req.params.prodId, res);
 });
 
-
-
-
 module.exports = app;
-
-
-
